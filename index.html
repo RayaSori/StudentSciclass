@@ -5,118 +5,214 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>소라선생님의 재미있는 과학 수업과 나의 다짐</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>소라선생님의 재미있는 과학 수업과 나의 다짐 🌟</h1>
-    </header>
-
-    <nav>
-        <button onclick="switchTab('student')" id="btn-student" class="active">학생용 (일지 작성)</button>
-        <button onclick="switchTab('teacher')" id="btn-teacher">교사용 (관리 및 다운로드)</button>
-    </nav>
-
-    <main>
-        <section id="student-section" class="tab-content active">
-            <h2>📝 수업 일지 작성하기</h2>
-            <form id="journal-form">
-                <div class="input-group">
-                    <label for="student-class">학급 (반)</label>
-                    <select id="student-class" required>
-                        <option value="">반을 선택하세요</option>
-                        <option value="1반">1반</option>
-                        <option value="2반">2반</option>
-                        <option value="3반">3반</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="student-id">학번 (예: 10101)</label>
-                    <input type="text" id="student-id" required placeholder="5자리 학번 입력">
-                </div>
-                <div class="input-group">
-                    <label for="student-name">이름</label>
-                    <input type="text" id="student-name" required placeholder="이름 입력">
-                </div>
-                <div class="input-group">
-                    <label for="science-unit">배운 단원 (2022 개정)</label>
-                    <select id="science-unit" required>
-                        <option value="">단원을 선택하세요</option>
-                        <option value="1. 과학의 기초">1. 과학의 기초</option>
-                        <option value="2. 여러 가지 힘">2. 여러 가지 힘</option>
-                        <option value="3. 생물의 다양성">3. 생물의 다양성</option>
-                        <option value="4. 기체의 성질">4. 기체의 성질</option>
-                        <option value="5. 물질의 상태 변화">5. 물질의 상태 변화</option>
-                        <option value="6. 빛과 파동">6. 빛과 파동</option>
-                        <option value="7. 과학과 나의 진로">7. 과학과 나의 진로</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="q-impression">💡 가장 인상 깊은 내용</label>
-                    <textarea id="q-impression" rows="3" required></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="q-difficulty">🤔 어려웠던 점</label>
-                    <textarea id="q-difficulty" rows="3" required></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="q-learned">🧠 수업을 한 후 더 알게 된 점</label>
-                    <textarea id="q-learned" rows="3" required></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="q-welldone">👍 수업 시간에 본인이 잘한 점</label>
-                    <textarea id="q-welldone" rows="3" required></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="q-resolution">🔥 나의 다짐</label>
-                    <textarea id="q-resolution" rows="3" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn">일지 제출하기</button>
-            </form>
-        </section>
-
-        <section id="teacher-section" class="tab-content">
-            <h2>👩‍🏫 교사 관리창</h2>
-            <div class="class-tabs" id="class-tabs">
-                </div>
-
-            <div class="status-board">
-                <h3>제출 현황</h3>
-                <div class="status-lists">
-                    <div class="list-box submitted">
-                        <h4>제출자 (<span id="count-sub">0</span>명)</h4>
-                        <ul id="list-submitted"></ul>
-                    </div>
-                    <div class="list-box unsubmitted">
-                        <h4>미제출자 (<span id="count-unsub">0</span>명)</h4>
-                        <ul id="list-unsubmitted"></ul>
-                    </div>
+    <div class="app-container">
+        <header class="main-header">
+            <div class="header-overlay">
+                <div class="header-badge">🔬 중학교 1학년 과학 수업일지</div>
+                <h1>소라선생님의 재미있는 과학 수업과 나의 다짐</h1>
+                <p class="header-subtitle">한 달 동안 배운 과학 지식을 되돌아보고 나의 성장을 기록해봅시다 ✨</p>
+                <div class="science-illustration">
+                    <svg viewBox="0 0 100 100" class="atoms-svg">
+                        <circle cx="50" cy="50" r="10" fill="#6c5ce7"/>
+                        <ellipse cx="50" cy="50" rx="30" ry="10" fill="none" stroke="#a29bfe" stroke-width="1.5" transform="rotate(30 50 50)"/>
+                        <ellipse cx="50" cy="50" rx="30" ry="10" fill="none" stroke="#a29bfe" stroke-width="1.5" transform="rotate(150 50 50)"/>
+                        <circle cx="24" cy="35" r="3" fill="#00cec9"/>
+                        <circle cx="76" cy="65" r="3" fill="#ff7675"/>
+                    </svg>
                 </div>
             </div>
+        </header>
 
-            <div class="table-container">
-                <h3>학생 답변 모아보기</h3>
-                <button onclick="downloadCSV()" class="excel-btn">📥 엑셀(CSV) 다운로드</button>
-                <table id="responses-table">
-                    <thead>
-                        <tr>
-                            <th>학번</th>
-                            <th>이름</th>
-                            <th>단원</th>
-                            <th>인상 깊은 내용</th>
-                            <th>어려웠던 점</th>
-                            <th>더 알게 된 점</th>
-                            <th>잘한 점</th>
-                            <th>나의 다짐</th>
-                            <th>제출일시</th>
-                        </tr>
-                    </thead>
-                    <tbody id="responses-body">
-                        </tbody>
-                </table>
-            </div>
-            <button onclick="clearData()" class="clear-btn" style="margin-top: 20px; background: #e74c3c;">초기화 (주의)</button>
-        </section>
-    </main>
+        <nav class="tab-nav">
+            <button onclick="switchTab('student')" id="btn-student" class="nav-card active">
+                <span class="icon">✏️</span>
+                <span class="label">학생용 일지 작성</span>
+            </button>
+            <button onclick="switchTab('teacher')" id="btn-teacher" class="nav-card">
+                <span class="icon">👩‍🏫</span>
+                <span class="label">교사용 대시보드</span>
+            </button>
+        </nav>
+
+        <main class="content-body">
+            <section id="student-section" class="tab-content active">
+                <form id="journal-form">
+                    
+                    <div class="card news-card profile-card">
+                        <div class="card-header">
+                            <span class="card-num">CARD 01</span>
+                            <h3>반가워요! 누구인가요? 👋</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="student-class">학급 (반)</label>
+                                    <select id="student-class" required>
+                                        <option value="">반 선택</option>
+                                        <option value="1반">1반</option>
+                                        <option value="2반">2반</option>
+                                        <option value="3반">3반</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label for="student-id">학번 (5자리)</label>
+                                    <input type="text" id="student-id" placeholder="예: 10101" required pattern="[0-9]{5}">
+                                </div>
+                                <div class="input-group">
+                                    <label for="student-name">이름</label>
+                                    <input type="text" id="student-name" placeholder="이름 입력" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card news-card unit-card">
+                        <div class="card-header">
+                            <span class="card-num">CARD 02</span>
+                            <h3>이번 달에 배운 과학 단원은 무엇인가요? 📘</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group full-width">
+                                <label for="science-unit">2022 개정 교육과정 단원</label>
+                                <select id="science-unit" required>
+                                    <option value="">단원을 선택해주세요</option>
+                                    <option value="1. 과학의 기초">1. 과학의 기초</option>
+                                    <option value="2. 여러 가지 힘">2. 여러 가지 힘</option>
+                                    <option value="3. 생물의 다양성">3. 생물의 다양성</option>
+                                    <option value="4. 기체의 성질">4. 기체의 성질</option>
+                                    <option value="5. 물질의 상태 변화">5. 물질의 상태 변화</option>
+                                    <option value="6. 빛과 파동">6. 빛과 파동</option>
+                                    <option value="7. 과학과 나의 진로">7. 과학과 나의 진로</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card news-card content-card-1">
+                        <div class="card-header">
+                            <span class="card-num">CARD 03</span>
+                            <h3>수업을 돌아보며 🤔</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <label for="q-impression"><span class="emoji">💡</span> 가장 인상 깊었던 내용과 그 이유는 무엇인가요?</label>
+                                <textarea id="q-impression" rows="4" placeholder="실험이나 흥미로웠던 지식을 자유롭게 적어주세요." required></textarea>
+                            </div>
+                            <div class="input-group mt-20">
+                                <label for="q-difficulty"><span class="emoji">🧩</span> 배우면서 가장 어려웠거나 이해하기 힘들었던 점은 무엇인가요?</label>
+                                <textarea id="q-difficulty" rows="4" placeholder="더 자세히 배우고 싶은 부분이나 어려웠던 내용을 적어주세요." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card news-card content-card-2">
+                        <div class="card-header">
+                            <span class="card-num">CARD 04</span>
+                            <h3>나의 성장과 칭찬 👍</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <label for="q-learned"><span class="emoji">🧠</span> 수업을 통해 새롭게 알게 되었거나 깨달은 점은 무엇인가요?</label>
+                                <textarea id="q-learned" rows="4" placeholder="수업 전과 후, 나의 생각이 어떻게 달라졌는지 적어보세요." required></textarea>
+                            </div>
+                            <div class="input-group mt-20">
+                                <label for="q-welldone"><span class="emoji">✨</span> 이번 달 과학 수업 시간 중 자신이 가장 잘했다고 생각하는 점은 무엇인가요?</label>
+                                <textarea id="q-welldone" rows="4" placeholder="발표, 모둠 활동, 집중력 등 스스로 칭찬하고 싶은 점을 적어주세요." required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card news-card resolution-card">
+                        <div class="card-header">
+                            <span class="card-num">CARD 05</span>
+                            <h3>앞으로의 멋진 다짐 🔥</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <label for="q-resolution"><span class="emoji">🚀</span> 다음 달 과학 수업을 향한 '나의 다짐'을 멋지게 한 문장으로 적어주세요!</label>
+                                <textarea id="q-resolution" rows="3" placeholder="예: 실험에 더 적극적으로 참여하겠다! 졸지 않고 경청하겠다!" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-container">
+                        <button type="submit" class="submit-btn">🚀 소라선생님께 일지 제출하기</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="teacher-section" class="tab-content">
+                <div class="card teacher-card">
+                    <div class="card-header">
+                        <h3>👩‍🏫 학급별 제출 현황 관리</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="class-selector-tabs" id="class-tabs">
+                            </div>
+
+                        <div class="status-grid">
+                            <div class="status-card submitted">
+                                <div class="status-header">
+                                    <span class="badge bg-success">제출 완료</span>
+                                    <h4>제출한 학생 (<span id="count-sub">0</span>명)</h4>
+                                </div>
+                                <ul id="list-submitted" class="student-list"></ul>
+                            </div>
+
+                            <div class="status-card unsubmitted">
+                                <div class="status-header">
+                                    <span class="badge bg-danger">미제출</span>
+                                    <h4>아직 제출 안 한 학생 (<span id="count-unsub">0</span>명)</h4>
+                                </div>
+                                <ul id="list-unsubmitted" class="student-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card data-card mt-30">
+                    <div class="card-header table-header-flex">
+                        <h3>📊 학생 일지 모아보기 (<span id="current-class-title">1반</span>)</h3>
+                        <button onclick="downloadCSV()" class="excel-btn">📥 이 학급 데이터 엑셀(CSV) 다운로드</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-overflow">
+                            <table id="responses-table">
+                                <thead>
+                                    <tr>
+                                        <th>학번</th>
+                                        <th>이름</th>
+                                        <th>단원</th>
+                                        <th>인상 깊은 내용</th>
+                                        <th>어려웠던 점</th>
+                                        <th>더 알게 된 점</th>
+                                        <th>잘한 점</th>
+                                        <th>나의 다짐</th>
+                                        <th>제출시간</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="responses-body">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="danger-zone mt-30">
+                    <button onclick="clearData()" class="clear-btn">⚠️ 전체 데이터 초기화하기</button>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="main-footer">
+            <p>© 2026 소라선생님의 과학실. 학생들의 성장을 응원합니다. 💫</p>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
