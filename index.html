@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소라선생님의 재미있는 과학 수업과 나의 다짐</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>소라선생님의 재미있는 과학 수업과 나의 다짐 🌟</h1>
+    </header>
+
+    <nav>
+        <button onclick="switchTab('student')" id="btn-student" class="active">학생용 (일지 작성)</button>
+        <button onclick="switchTab('teacher')" id="btn-teacher">교사용 (관리 및 다운로드)</button>
+    </nav>
+
+    <main>
+        <section id="student-section" class="tab-content active">
+            <h2>📝 수업 일지 작성하기</h2>
+            <form id="journal-form">
+                <div class="input-group">
+                    <label for="student-class">학급 (반)</label>
+                    <select id="student-class" required>
+                        <option value="">반을 선택하세요</option>
+                        <option value="1반">1반</option>
+                        <option value="2반">2반</option>
+                        <option value="3반">3반</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="student-id">학번 (예: 10101)</label>
+                    <input type="text" id="student-id" required placeholder="5자리 학번 입력">
+                </div>
+                <div class="input-group">
+                    <label for="student-name">이름</label>
+                    <input type="text" id="student-name" required placeholder="이름 입력">
+                </div>
+                <div class="input-group">
+                    <label for="science-unit">배운 단원 (2022 개정)</label>
+                    <select id="science-unit" required>
+                        <option value="">단원을 선택하세요</option>
+                        <option value="1. 과학의 기초">1. 과학의 기초</option>
+                        <option value="2. 여러 가지 힘">2. 여러 가지 힘</option>
+                        <option value="3. 생물의 다양성">3. 생물의 다양성</option>
+                        <option value="4. 기체의 성질">4. 기체의 성질</option>
+                        <option value="5. 물질의 상태 변화">5. 물질의 상태 변화</option>
+                        <option value="6. 빛과 파동">6. 빛과 파동</option>
+                        <option value="7. 과학과 나의 진로">7. 과학과 나의 진로</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="q-impression">💡 가장 인상 깊은 내용</label>
+                    <textarea id="q-impression" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="q-difficulty">🤔 어려웠던 점</label>
+                    <textarea id="q-difficulty" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="q-learned">🧠 수업을 한 후 더 알게 된 점</label>
+                    <textarea id="q-learned" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="q-welldone">👍 수업 시간에 본인이 잘한 점</label>
+                    <textarea id="q-welldone" rows="3" required></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="q-resolution">🔥 나의 다짐</label>
+                    <textarea id="q-resolution" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">일지 제출하기</button>
+            </form>
+        </section>
+
+        <section id="teacher-section" class="tab-content">
+            <h2>👩‍🏫 교사 관리창</h2>
+            <div class="class-tabs" id="class-tabs">
+                </div>
+
+            <div class="status-board">
+                <h3>제출 현황</h3>
+                <div class="status-lists">
+                    <div class="list-box submitted">
+                        <h4>제출자 (<span id="count-sub">0</span>명)</h4>
+                        <ul id="list-submitted"></ul>
+                    </div>
+                    <div class="list-box unsubmitted">
+                        <h4>미제출자 (<span id="count-unsub">0</span>명)</h4>
+                        <ul id="list-unsubmitted"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <h3>학생 답변 모아보기</h3>
+                <button onclick="downloadCSV()" class="excel-btn">📥 엑셀(CSV) 다운로드</button>
+                <table id="responses-table">
+                    <thead>
+                        <tr>
+                            <th>학번</th>
+                            <th>이름</th>
+                            <th>단원</th>
+                            <th>인상 깊은 내용</th>
+                            <th>어려웠던 점</th>
+                            <th>더 알게 된 점</th>
+                            <th>잘한 점</th>
+                            <th>나의 다짐</th>
+                            <th>제출일시</th>
+                        </tr>
+                    </thead>
+                    <tbody id="responses-body">
+                        </tbody>
+                </table>
+            </div>
+            <button onclick="clearData()" class="clear-btn" style="margin-top: 20px; background: #e74c3c;">초기화 (주의)</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
